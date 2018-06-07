@@ -1,0 +1,47 @@
+log : true
+name  : blockbase-sample
+
+dbms : mysql
+mysql :
+    host : localhost
+    user : root
+    password :
+    port : 3306
+    database : blocksample
+
+crypto_key : sup3rS3cr3t
+
+express :
+    port: 1337
+    async_init : true
+    routes :
+        # Classic view with no Controller
+        - type: view
+          src: /
+          dest: index
+          method: get
+        # Users related routes
+        - type: controller
+          src: /users
+          dest: user.crud::list
+          method: get
+        - type: controller
+          src: /users
+          dest: user.crud::create
+          method: post
+        - type: controller
+          src: /users/:id
+          dest: user.crud::read
+          method: get
+        - type: controller
+          src: /users/:id
+          dest: user.crud::update
+          method: put
+        - type: controller
+          src: /users/:id
+          dest: user.crud::delete
+          method: delete
+        - type: controller
+          src: /users/auth
+          dest: user.auth::log
+          method: post

@@ -1,0 +1,33 @@
+{% extends '_layout.twig' %}
+
+{% set title = 'Blockbase - Application' %}
+
+{% block content %}
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background : linear-gradient(#009fe3, #9198e5);
+    }
+
+    div{
+        width: 40%;
+        margin: 20% auto;
+        text-align: center;
+    }
+
+    div h1{
+        font-family: Arial;
+        color : white; 
+    }
+    
+    div img{
+        width: 100%;
+    }
+</style>
+
+<div>
+    <img src="https://www.blockbase.run/fr/assets/img/blockbase.svg"/>
+    <h1>Welcome behind the mirror !</h1>
+</div>
+{% endblock %}

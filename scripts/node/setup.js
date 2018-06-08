@@ -1,16 +1,19 @@
 const fs = require('fs')
 const Knex = require('knex')
+const bcrypt = require('bcrypt')
 
 /**
  * Blockbase Sample Init Script
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  */
 
-const blockbase = require('@blacksmithstudio/blockbase')
+const blockbase = require('blockbase')
 
 blockbase({ root : `${__dirname}/../../src/` }, async (app) => {
     const Config = app.config 
     const Logger = app.drivers.logger
+
+    const User = app.models.user
 
     Logger.warn('Blockbase Sample | Setup', 'starting... initializing database')
 
@@ -39,6 +42,14 @@ blockbase({ root : `${__dirname}/../../src/` }, async (app) => {
     const schema = fs.readFileSync(`${__dirname}/../mysql/schema.sql`).toString()
     Logger.warn('Blockbase Sample | Setup', `loading SQL schema in "${Config.mysql.database}"`)
     await knex.raw(schema)
+
+    let user = new User({
+        firstname : 'John',
+        lastname : 'Doe',
+        email : 'john@doe.com',
+        password : bcrypt.hashSync('1234', 10)
+    })
+    await user.save()
 
     Logger.success('Blockbase Sample | Setup', 'finished !!')   
     process.exit() 

@@ -1,7 +1,7 @@
 /**
  * User Example model
  * @namespace app.models.user
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  * @param {Object} app - app namespace to update
  *
  * @returns {Object} model
@@ -28,7 +28,7 @@ module.exports = (app) => {
          */
         async list(){
             try{
-                let results = await this.queryBuilder().orderBy('created_at', 'desc')
+                let results = await this.queryBuilder.orderBy('created_at', 'desc')
                 return results.map(r => new User(r))
             } catch(e){ throw e }
         }

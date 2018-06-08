@@ -4,7 +4,7 @@ const CryptoJS = require('crypto-js')
 /**
  * Auth Example controller
  * @namespace app.controllers.auth
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  * @param {Object} app - app namespace to update
  *
  * @returns {Object} controller
@@ -13,7 +13,7 @@ module.exports = (app) => {
     const Config = app.config
 
     const Logger = app.drivers.logger
-    const Tokenizer = app.drivers.Tokenizer
+    const Tokenizer = app.drivers.tokenizer
     
     const User = app.models.user
     
@@ -28,11 +28,14 @@ module.exports = (app) => {
             const { email, password } = req.body
             
             try{
-                let results = new User().queryBuilder.where('email', email)
+                let results = await new User().queryBuilder.where('email', email)
                 let user = new User(!results.length ? { email, password : bcrypt.hashSync(password, 10) } : results[0])
 
                 if(!results.length && password)
                     user = await user.save()
+
+                if(results.length && !bcrypt.compareSync(password, user.data.password))
+                    res.status(403).send({ error : 'Wrong login or password' })
                 
                 let { id, email, created_at } = user.data
                 let token = Tokenizer.encrypt({ id, email, created_at })

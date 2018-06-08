@@ -1,6 +1,6 @@
 /**
  * User Exposer system for models
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  *
  * @returns {Object} exposer
  */

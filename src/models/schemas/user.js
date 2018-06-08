@@ -3,7 +3,7 @@ const moment = require('moment')
 
 /**
  * User validation schema (with Joi)
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  * @returns {Object} Joi schema
  */
 module.exports = Joi.object().keys({
@@ -11,7 +11,8 @@ module.exports = Joi.object().keys({
     firstname  : Joi.string().max(128),
     lastname   : Joi.string().max(128),
     email      : Joi.string().max(128),
-    logged_at  : Joi.date().timestamp().default(() => moment().unix(), 'last logged in'),
-    created_at : Joi.date().timestamp().default(() => moment().unix(), 'date created'),
-    updated_at : Joi.date().timestamp().default(() => moment().unix(), 'date updated'),
+    password   : Joi.string().max(1024),
+    logged_at  : Joi.date().timestamp().default(() => moment().format('YYYY-MM-DD HH:MM:SS'), 'last logged in'),
+    created_at : Joi.date().timestamp().default(() => moment().format('YYYY-MM-DD HH:MM:SS'), 'date created'),
+    updated_at : Joi.date().timestamp().default(() => moment().format('YYYY-MM-DD HH:MM:SS'), 'date updated'),
 })

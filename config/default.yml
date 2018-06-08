@@ -22,6 +22,10 @@ express :
           method: get
         # Users related routes
         - type: controller
+          src: /users/auth
+          dest: user.auth::log
+          method: post
+        - type: controller
           src: /users
           dest: user.crud::list
           method: get
@@ -41,7 +45,3 @@ express :
           src: /users/:id
           dest: user.crud::delete
           method: delete
-        - type: controller
-          src: /users/auth
-          dest: user.auth::log
-          method: post

@@ -3,7 +3,7 @@ const CryptoJS = require('crypto-js')
 /**
  * Tokenizer Driver Custom
  * @namespace app.drivers.tokenizer
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  * @param {Object} app - app namespace to update
  *
  * @returns {Object} controller

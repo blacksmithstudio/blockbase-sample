@@ -1,10 +1,9 @@
 const CryptoJS = require('crypto-js')
-const moment = require('moment')
-console.log(moment.unix())
+
 /**
  * Crud Example controller
  * @namespace app.controllers.user.crud
- * @author Alexandre Pereira <alex@blacksmith.studio>
+ * @author Alexandre Pereira <code@blacksmith.studio>
  * @param {Object} app - app namespace to update
  *
  * @returns {Object} controller
@@ -13,7 +12,7 @@ module.exports = (app) => {
     const Config = app.config
 
     const Logger = app.drivers.logger
-    const Tokenizer = app.drivers.Tokenizer
+    const Tokenizer = app.drivers.tokenizer
 
     const User = app.models.user
 
@@ -53,7 +52,7 @@ module.exports = (app) => {
                 let user = new User({ id })
                 user = await user.read()
 
-                res.status(200).send(user.expose(decrypted.id == id ? 'private' : 'public'))
+                res.status(200).send(user.expose((decrypted && decrypted.id == id) ? 'private' : 'public'))
             } catch(error) {
                 Logger.error('Read User', error)
                 res.status(500).send({ error })

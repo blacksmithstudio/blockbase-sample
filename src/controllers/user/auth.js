@@ -37,8 +37,11 @@ module.exports = (app) => {
                 if(results.length && !bcrypt.compareSync(password, user.data.password))
                     res.status(403).send({ error : 'Wrong login or password' })
                 
-                let { id, email, created_at } = user.data
-                let token = Tokenizer.encrypt({ id, email, created_at })
+                let token = Tokenizer.encrypt({ 
+                    id : user.data.id,
+                    email : user.data.email,
+                    created_at : user.data.created_at
+                })
 
                 res.status(201).send({ user : user.expose('private'), token })
             } catch(error){

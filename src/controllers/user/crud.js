@@ -1,4 +1,5 @@
-const CryptoJS = require('crypto-js')
+const moment = require('moment')
+const bcrypt = require('bcrypt')
 
 /**
  * Crud Example controller
@@ -24,16 +25,22 @@ module.exports = (app) => {
          * @param {[*]} res - express res object
          */
         async create(req, res){
-            let { firstname, lastname, email } = req.body
+            let { firstname, lastname, email, password } = req.body
 
             try{
-                let user = new User({ firstname, lastname, email })
-
+                let user = new User({ firstname, lastname, email, password : bcrypt.hashSync(password, 10) })
                 user = await user.save()
-                res.status(201).send(user.expose('private'))
+                
+                let token = Tokenizer.encrypt({ 
+                    id : user.data.id,
+                    email : user.data.email,
+                    created_at : user.data.created_at
+                })
+                
+                res.status(200).send({ user : user.expose('private'), token })
             } catch(error){
                 Logger.error('Create User', error)
-                res.status(500).send({ error })
+                res.status(500).send({ error : error.message || error })
             }
         },
 
@@ -52,7 +59,7 @@ module.exports = (app) => {
                 let user = new User({ id })
                 user = await user.read()
 
-                res.status(200).send(user.expose((decrypted && decrypted.id == id) ? 'private' : 'public'))
+                res.status(201).send(user.expose((decrypted && decrypted.id == id) ? 'private' : 'public'))
             } catch(error) {
                 Logger.error('Read User', error)
                 res.status(500).send({ error })
@@ -66,17 +73,20 @@ module.exports = (app) => {
          * @param {[*]} res - express res object
          */
         async update(req, res){
-            let data = Object.assign({}, req.body)
+            const { id } = req.params
+
+            let data = Object.assign({ id }, req.body)
             let token = Tokenizer.getToken(req)
             let decrypted = token ? Tokenizer.decrypt(token) : null
 
             if(!token || !decrypted.id)
                 return res.status(403).send({ error : `Access forbidden` })
-            if(data.id != decrypted.id)
+            if(id != decrypted.id)
                 return res.status(403).send({ error : `You can't edit this user` })
 
             try{
                 let user = new User(data)
+                user.data.updated_at = moment().format('YYYY-MM-DD HH:MM:SS')
 
                 if(!user.valid())
                     return res.status(422).send(user.validate())
@@ -109,7 +119,7 @@ module.exports = (app) => {
                 let user = new User({ id })
                 let deleted = await user.delete()
 
-                res.status(200).send({ deleted })
+                res.status(200).send({ id, deleted })
             } catch(error){
                 Logger.error('Delete User', error)
                 res.status(500).send({ error })

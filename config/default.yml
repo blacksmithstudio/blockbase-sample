@@ -1,6 +1,7 @@
 log : true
 name  : blockbase-sample
 
+# Default DBMS
 dbms : mysql
 mysql :
     host : localhost
@@ -9,6 +10,7 @@ mysql :
     port : 3306
     database : blocksample
 
+# Crypto Secret Key to encode tokens
 crypto_key : sup3rS3cr3t
 
 express :
@@ -20,28 +22,32 @@ express :
           src: /
           dest: index
           method: get
+        - type: controller
+          src: /users
+          dest: router::users
+          method: get
         # Users related routes
         - type: controller
-          src: /users/auth
+          src: /api/users/auth
           dest: user.auth::log
           method: post
         - type: controller
-          src: /users
+          src: /api/users
           dest: user.crud::list
           method: get
         - type: controller
-          src: /users
+          src: /api/users
           dest: user.crud::create
           method: post
         - type: controller
-          src: /users/:id
+          src: /api/users/:id
           dest: user.crud::read
           method: get
         - type: controller
-          src: /users/:id
+          src: /api/users/:id
           dest: user.crud::update
           method: put
         - type: controller
-          src: /users/:id
+          src: /api/users/:id
           dest: user.crud::delete
           method: delete

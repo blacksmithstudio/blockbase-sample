@@ -32,7 +32,7 @@ module.exports = (app) => {
          * @returns {object} data
          */
         encrypt(obj){
-            let text = JSON.stringify({ id, email, created_at })
+            let text = JSON.stringify(obj)
             return CryptoJS.AES.encrypt(text, Config.crypto_key).toString()
         },
 

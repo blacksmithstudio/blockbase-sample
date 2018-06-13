@@ -1,0 +1,240 @@
+{
+	"info": {
+		"name": "Blockbase Sample",
+		"_postman_id": "c8f7474e-6d4e-4b70-0072-efe98abb71d8",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users - List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "john@doe.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1337/api/users/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users",
+						"auth"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Save",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "alex2@toto.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "firstname",
+							"value": "alexandre2",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "lastname",
+							"value": "pereira2",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "toto",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1337/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Read",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "U2FsdGVkX1+sx49ZQ/dz98ygxIEJR/8+rEYBYyiwumB5D0jQbHgVuYKJHa1TofhhyoWp3+uDSKO/qQrB0wgyLBvBhHD9dJysWpS3QearIRuFqbTaA0w20AxaXWYmx8oB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "U2FsdGVkX19niHfUXyDCUkV+g3inFdxUAy1oXu/s1uwme2SFgNOPUE5yTu+bq31ZlnM0DfevpiUQyiZ2Tdom2eHVmyjQyFBw4HHwNyXwiQ134tl7u5bqo52iUMTakj4i",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "lastname",
+							"value": "doe",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:1337/api/users/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users",
+						"1"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Users - Delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "U2FsdGVkX1+sx49ZQ/dz98ygxIEJR/8+rEYBYyiwumB5D0jQbHgVuYKJHa1TofhhyoWp3+uDSKO/qQrB0wgyLBvBhHD9dJysWpS3QearIRuFqbTaA0w20AxaXWYmx8oB",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:1337/api/users/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"api",
+						"users",
+						"11"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

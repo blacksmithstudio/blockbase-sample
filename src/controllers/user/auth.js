@@ -1,5 +1,4 @@
 const bcrypt = require('bcrypt')
-const CryptoJS = require('crypto-js')
 
 /**
  * Auth Example controller
@@ -20,7 +19,7 @@ module.exports = (app) => {
     return {
         /**
          * auth (login / signup) a user
-         * @memberof app.controllers.user
+         * @memberof app.controllers.user.auth
          * @param {[*]} req - express req object
          * @param {[*]} res - express res object
          */

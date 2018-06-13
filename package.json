@@ -21,7 +21,7 @@
     "bcrypt": "^2.0.1",
     "blockbase": "*",
     "blockbase-express": "*",
-    "blockbase-mysql": "^1.0.0",
+    "blockbase-mysql": "*",
     "crypto-js": "^3.1.9-1",
     "joi": "^13.4.0",
     "knex": "^0.14.6",

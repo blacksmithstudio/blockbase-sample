@@ -34,7 +34,7 @@ module.exports = (app) => {
                     user = await user.save()
 
                 if(results.length && !bcrypt.compareSync(password, user.data.password))
-                    res.status(403).send({ error : 'Wrong login or password' })
+                    return res.status(403).send({ error : 'Wrong login or password' })
                 
                 let token = Tokenizer.encrypt({ 
                     id : user.data.id,

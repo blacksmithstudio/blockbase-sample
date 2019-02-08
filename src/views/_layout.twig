@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>{{ title }}</title>
     <meta name="viewport" content="width=device-width, user-scalable=no">
-  </head>
+    {% block head %}
+    {% endblock %}
+</head>
 
-  <body>
-  {% block content %}
-  {% endblock %}
-  </body>
+<body>
+{% block content %}
+{% endblock %}
+</body>
 </html>

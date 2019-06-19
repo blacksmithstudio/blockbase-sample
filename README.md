@@ -2,7 +2,7 @@
 [using Blockbase](http://npmjs.com/package/@blacksmithstudio/blockbase)
 
 ### Version
-v1.0.1
+v1.0.2
 
 ### Installation
 
